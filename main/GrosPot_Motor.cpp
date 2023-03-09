@@ -7,16 +7,16 @@
 
 /*TO DO change digital to analog to transmit PWM, not full power*/
 
-#define ESC_MAX_BACKWARD 2047 //4096 => 2049
-#define ESC_MAX_FORWARD 2047 // 0 => 2047
-#define ESC_ZERO 4096 //0 ou 4096 ou 2048
+#define ESC_MAX_BACKWARD 49.9 //4096 => 2049
+#define ESC_MAX_FORWARD 49.9 // 0 => 2047
+#define ESC_ZERO 100 //0 ou 4096 ou 2048
 
 void MOTOR_init(){
   MOTOR_forward(0);
   MOTOR_forward_boost(0);
-  delay(1000);
+  delay(2000);
   MOTOR_backward_boost(0);
-  delay(1000);
+  delay(2000);
   MOTOR_forward_boost(0);
 
 }
@@ -49,6 +49,8 @@ void MOTOR_forward_boost(float speedMotor){
 void MOTOR_backward_boost(float speedMotor){
 
   int value = (int)(ESC_ZERO - speedMotor/100.0*ESC_MAX_BACKWARD);
+
+  SERIAL_println("Value %d", value);
 
   DRIVERPWM_setPwm(PIN_PWM_ESCG, value);
   DRIVERPWM_setPwm(PIN_PWM_ESCD, value);
