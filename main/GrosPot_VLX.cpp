@@ -1,22 +1,7 @@
 #include "GrosPot_VLX.h"
 #include <Wire.h>
 
-#include <Adafruit_VL53L0X.h> /*TO REMOVE*/
-#include "VL53L0X.h"
 #include "GrosPot_DriverPwm.h"
-
-Adafruit_VL53L0X lox = Adafruit_VL53L0X();
-
-void VLX_init(void){
-
-  DRIVERPWM_setOnOff(PIN_PWM_SHUT_AvtG, false);
-  DRIVERPWM_setOnOff(PIN_PWM_SHUT_AvtM, false);
-  DRIVERPWM_setOnOff(PIN_PWM_SHUT_AvtD, false);
-
-  DRIVERPWM_setOnOff(PIN_PWM_SHUT_ArrG, false);
-  DRIVERPWM_setOnOff(PIN_PWM_SHUT_ArrM, false);
-  DRIVERPWM_setOnOff(PIN_PWM_SHUT_ArrD, false);
-}
 
 // VL15310x objects declaration
 tof_obj tof_front;
@@ -72,10 +57,8 @@ void set_ID_error_handler(int pin_TOF,int tof_id, VL53L0X tof_obj, int addr_TOF)
   //tof_right_front.setTimeout(500);
   
   while(!tof_obj.init(true)) {
-    set_led(RIGHT_LED, LOW);
     Serial.println("Failed to init pin_TOF !");
     delay(500);
-    set_led(RIGHT_LED, HIGH);
   }
   tof_obj.setAddress(addr_TOF);
   delay(100);
@@ -93,13 +76,14 @@ void set_ToF_High_Low(int state){
 
 void TOF_init(){
   Serial.println("Init ToF");
-  pinMode(LEFT_TOF_FRONT, OUTPUT);
-  pinMode(CENTER_TOF_FRONT, OUTPUT);
-  pinMode(RIGHT_TOF_FRONT, OUTPUT);
 
-  pinMode(LEFT_TOF_BACK, OUTPUT);
-  pinMode(CENTER_TOF_BACK, OUTPUT);
-  pinMode(RIGHT_TOF_BACK, OUTPUT);
+  pinMode(PIN_PWM_SHUT_AvtG, OUTPUT);
+  pinMode(PIN_PWM_SHUT_AvtM, OUTPUT);
+  pinMode(PIN_PWM_SHUT_AvtD, OUTPUT);
+
+  pinMode(PIN_PWM_SHUT_ArrG, OUTPUT);
+  pinMode(PIN_PWM_SHUT_ArrM, OUTPUT);
+  pinMode(PIN_PWM_SHUT_ArrD, OUTPUT);
 
   /*Set all Tof To LOW*/
   set_ToF_High_Low(LOW);//useless TO REMOVE set ID set to LOW at beginning
@@ -142,22 +126,22 @@ bool Update_tof(dist_tof dist_TOF ){
   float measure = 0.0;
   bool err = false;
 
-  err = get_measure(tof_front.left, measure);
+  err = get_measure(tof_front.left, &measure);
   dist_TOF.front_left = measure;
 
-  err = get_measure(tof_front.center, measure);
+  err = get_measure(tof_front.center, &measure);
   dist_TOF.front_center = measure;
 
-  err = get_measure(tof_front.right, measure);
+  err = get_measure(tof_front.right, &measure);
   dist_TOF.front_right = measure;
 
-  err = get_measure(tof_back.left, measure);
+  err = get_measure(tof_back.left, &measure);
   dist_TOF.back_left = measure;
 
-  err = get_measure(tof_back.center, measure);
+  err = get_measure(tof_back.center, &measure);
   dist_TOF.back_center = measure;
 
-  err = get_measure(tof_back.right, measure);
+  err = get_measure(tof_back.right, &measure);
   dist_TOF.back_right = measure;   
 
   return err;

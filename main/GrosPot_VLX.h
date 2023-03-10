@@ -2,16 +2,9 @@
 #define VLX_H_
 
 #include <Arduino.h>
+#include <VL53L0X.h>
 
 #include "param.h"
-
-#define LEFT_TOF_FRONT    //A3 XSHUT
-#define CENTER_TOF_FRONT  //A1 XSHUT
-#define RIGHT_TOF_FRONT   //A2 XSHUT
-
-#define LEFT_TOF_BACK     //A3 XSHUT
-#define CENTER_TOF_BACK   //A1 XSHUT
-#define RIGHT_TOF_BACK    //A2 XSHUT
 
 #define LEFT_TOF_FRONT_ADDRESS   22
 #define CENTER_TOF_FRONT_ADDRESS 25
@@ -19,6 +12,9 @@
 #define LEFT_TOF_BACK_ADDRESS    30
 #define CENTER_TOF_BACK_ADDRESS  32
 #define RIGHT_TOF_BACK_ADDRESS   34
+
+#define MIN_DETECT 3
+#define MIN_NOT_DETECT 4
 
 // VL15310x object 
 struct tof_obj{

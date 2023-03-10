@@ -7,6 +7,7 @@
 #include "GrosPot_Buzzer.h"
 #include "GrosPot_Serial.h"
 #include "GrosPot_DriverPwm.h"
+#include "GrosPot_VLX.h"
 
 #include "param.h"
 
@@ -32,6 +33,7 @@ void check_capteur_ultrason(){
 void setup() {
   SERIAL_init();
   DRIVERPWM_init();
+  TOF_init();
   //SR04_init();
   //BUZZER_init ();
   LED_init ();
@@ -46,13 +48,14 @@ void setup() {
 
 void loop() {
   //MOTOR_rotateLeft(100);
-  LED_on();
+  /*LED_on();
   delay(200);
   LED_off();
   check_capteur_ir();
-  check_capteur_ultrason();
+  check_capteur_ultrason();*/
+  Plot_tof();
   delay(1000);
 
-  MOTOR_forward(0);
+  //MOTOR_forward(0);
   //MOTOR_forward_boost(0);
 }
