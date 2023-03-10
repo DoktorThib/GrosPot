@@ -33,17 +33,18 @@ void check_capteur_ultrason(){
 void setup() {
   SERIAL_init();
   DRIVERPWM_init();
+  delay(100);
   TOF_init();
   //SR04_init();
   //BUZZER_init ();
   LED_init ();
   MOTOR_init();
 
-  delay(10000);
+  delay(1000);
 
   MOTOR_forward(100);
 
-  MOTOR_forward_boost(10);
+  //MOTOR_forward_boost(10);
 }
 
 void loop() {
