@@ -37,12 +37,12 @@ void setup() {
   TOF_init();
   //SR04_init();
   //BUZZER_init ();
-  LED_init ();
+  //LED_init ();
   MOTOR_init();
 
   delay(1000);
 
-  MOTOR_forward(100);
+  //delay(10000);
 
   //MOTOR_forward_boost(10);
 }
@@ -54,9 +54,22 @@ void loop() {
   LED_off();
   check_capteur_ir();
   check_capteur_ultrason();*/
-  Plot_tof();
-  delay(1000);
+  //Plot_tof();
+  //delay(1000);
+  
+  MOTOR_forward_boost (100);
+  delay(200);
 
+  /*delay(100);
+  Serial.print("coucou");
+  val = Serial.parseInt();   // lecture de la valeur passée par le port série
+   if (Serial.available() > 0 && valPrec != val) {
+    valPrec = val;
+      Serial.println(val);
+      escD.write(val);
+      escG.write(val); 
+   }
+   delay(15);*/
   //MOTOR_forward(0);
   //MOTOR_forward_boost(0);
 }
