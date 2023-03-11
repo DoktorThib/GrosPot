@@ -27,8 +27,8 @@
 #define PIN_PWM_SHUT_ArrM 10
 #define PIN_PWM_SHUT_ArrD 11
 
-#define PIN_PWM_ESCG 12
-#define PIN_PWM_ESCD 14
+#define PIN_PWM_ESCG 3
+#define PIN_PWM_ESCD 5
 
 #define ADDR_I2C_PWM 0x40
 #define ADDR_I2C_VLX_DEFAULT 0x29
