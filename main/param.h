@@ -3,8 +3,10 @@
 
 #include <Arduino.h>
 
-#define PIN_LED 13
-#define PIN_BUZZER 8
+#define PIN_LED_RED     6
+#define PIN_LED_YELLOW  7
+#define PIN_LED_GREEN   12
+#define PIN_BUZZER      8
 
 #define PIN_TRIGGER 9
 #define PIN_ECHOG 10

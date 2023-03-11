@@ -29,34 +29,36 @@ bool sens_avant_robot=true;
 int etat=INIT;
 
 void setup() {
-  SERIAL_init();
+  //SERIAL_init();
   DRIVERPWM_init();
-  delay(100);
-  TOF_init();
-  SR04_init();
   LED_init ();
+  delay(100);
+  //TOF_init();
+  //BUZZER_init_TOF_ok();
+  BUZZER_detected_ennemy();
+  SR04_init();
   MOTOR_init();
 
   /**** Wait Black table ****/
-  while(check_ir_arriere()){
+  /*while(check_ir_arriere()){
     delay(10);
-  }
+  }*/
 
   /**** Wait White paper ****/
-  while(!check_ir_arriere()){
+  /*while(!check_ir_arriere()){
     delay(10);
-  }
+  }*/
 
   delay(5000);
 
-  MOTOR_forward(10);
+  /*MOTOR_forward(10);*/
   sens_avant_robot=true;
 }
 
 
 void loop() {
 
-  if(sens_avant_robot){
+  /*if(sens_avant_robot){
     if(check_ir_avant()){
       SERIAL_println("Avant");
     }
@@ -64,7 +66,22 @@ void loop() {
     if(check_ir_arriere()){
       SERIAL_println("Arriere");
     }
-  }
+  }*/
 
+    SERIAL_println("LED ACTIVE");
+    digitalWrite(PIN_LED_RED,    HIGH);
+    delay(50);
+    digitalWrite(PIN_LED_YELLOW, HIGH);
+    delay(50);
+    digitalWrite(PIN_LED_GREEN,  HIGH);
 
+    delay(1000);
+
+    digitalWrite(PIN_LED_RED,    LOW);
+    delay(50);
+    digitalWrite(PIN_LED_YELLOW, LOW);
+    delay(50);
+    digitalWrite(PIN_LED_GREEN,  LOW);
+
+     delay(1000);
 }

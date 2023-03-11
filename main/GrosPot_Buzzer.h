@@ -5,5 +5,7 @@
 #include "param.h"
 
 void BUZZER_init (void);
+void BUZZER_detected_ennemy(void);
+void BUZZER_init_TOF_ok(void);
 
 #endif
