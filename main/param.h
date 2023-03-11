@@ -19,8 +19,8 @@
 
 #define PIN_PWM_M11 0 // => IN3 => Motor B
 #define PIN_PWM_M12 1 // => IN4 => Motor B
-#define PIN_PWM_M21 3 // => IN1 => Motor A
-#define PIN_PWM_M22 2 // => IN2 => Motor A
+#define PIN_PWM_M21 2 // => IN1 => Motor A
+#define PIN_PWM_M22 3 // => IN2 => Motor A
 
 #define PIN_PWM_SHUT_AvtG 5
 #define PIN_PWM_SHUT_AvtM 6
