@@ -39,5 +39,7 @@
 #define ADDR_I2C_VLX_ArrM 0x34 
 #define ADDR_I2C_VLX_ArrD 0x35 
 
+#define LIM_WHITE 500
+
 
 #endif
