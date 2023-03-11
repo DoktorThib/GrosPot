@@ -17,8 +17,8 @@
 
 #define PIN_PWM_M11 0 // => IN3 => Motor B
 #define PIN_PWM_M12 1 // => IN4 => Motor B
-#define PIN_PWM_M21 3 // => IN1 => Motor A
-#define PIN_PWM_M22 2 // => IN2 => Motor A
+#define PIN_PWM_M21 2 // => IN1 => Motor A
+#define PIN_PWM_M22 3 // => IN2 => Motor A
 
 #define PIN_PWM_SHUT_AvtG 5
 #define PIN_PWM_SHUT_AvtM 6
@@ -38,6 +38,8 @@
 #define ADDR_I2C_VLX_ArrG 0x33 
 #define ADDR_I2C_VLX_ArrM 0x34 
 #define ADDR_I2C_VLX_ArrD 0x35 
+
+#define LIM_WHITE 500
 
 
 #endif

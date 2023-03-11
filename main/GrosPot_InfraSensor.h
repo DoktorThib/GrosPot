@@ -9,4 +9,8 @@ void INFRASENSOR_readDataAvD(int* sensorValue);
 void INFRASENSOR_readDataArG(int* sensorValue);
 void INFRASENSOR_readDataArD(int* sensorValue);
 
+void check_capteur_ir();
+bool check_ir_avant();
+bool check_ir_arriere();
+
 #endif
