@@ -8,6 +8,7 @@
 #include "GrosPot_Serial.h"
 #include "GrosPot_DriverPwm.h"
 #include "GrosPot_VLX.h"
+#include "GrosPot_Strat.h"
 
 #include "param.h"
 
@@ -25,11 +26,11 @@ void check_capteur_ultrason(){
   SERIAL_println("G %d D %d", value, value1);
 }
 
-bool sens_avant_robot=true;
+bool sens_avant_robot=SENS_FORWARD;
 int etat=INIT;
 
 void setup() {
-  //SERIAL_init();
+  SERIAL_init();
   DRIVERPWM_init();
   LED_init ();
   delay(100);
@@ -39,49 +40,23 @@ void setup() {
   SR04_init();
   MOTOR_init();
 
-  /**** Wait Black table ****/
-  /*while(check_ir_arriere()){
-    delay(10);
-  }*/
-
-  /**** Wait White paper ****/
-  /*while(!check_ir_arriere()){
-    delay(10);
-  }*/
+  /*Waiting white paper to activate it*/
+  //STRAT_waiting_start();
 
   delay(5000);
 
   /*MOTOR_forward(10);*/
-  sens_avant_robot=true;
+  sens_avant_robot=SENS_FORWARD;
 }
 
 
 void loop() {
 
-  /*if(sens_avant_robot){
-    if(check_ir_avant()){
-      SERIAL_println("Avant");
-    }
+  if(sens_avant_robot == SENS_FORWARD){
+    STRAT_forward_line_rotate(&sens_avant_robot);
   }else{
-    if(check_ir_arriere()){
-      SERIAL_println("Arriere");
-    }
-  }*/
+    STRAT_backward_line_rotate(&sens_avant_robot);
+  }
 
-    SERIAL_println("LED ACTIVE");
-    digitalWrite(PIN_LED_RED,    HIGH);
-    delay(50);
-    digitalWrite(PIN_LED_YELLOW, HIGH);
-    delay(50);
-    digitalWrite(PIN_LED_GREEN,  HIGH);
-
-    delay(1000);
-
-    digitalWrite(PIN_LED_RED,    LOW);
-    delay(50);
-    digitalWrite(PIN_LED_YELLOW, LOW);
-    delay(50);
-    digitalWrite(PIN_LED_GREEN,  LOW);
-
-     delay(1000);
+  delay(10);
 }

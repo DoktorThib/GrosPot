@@ -14,6 +14,7 @@ void MOTOR_backward(float speedMotor);
 
 void MOTOR_forward_boost(float speedMotor);
 void MOTOR_backward_boost(float speedMotor);
+void MOTOR_stop_boost(void);
 
 void MOTOR_rotateRight(float speedMotor);
 void MOTOR_rotateLeft(float speedMotor);

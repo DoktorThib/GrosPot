@@ -26,7 +26,7 @@ int valPrec = 0;
 #define ESC_ZERO 91 //0 ou 4096 ou 2048
 
 void MOTOR_init(){
-  //MOTOR_forward(0);
+  MOTOR_forward(0);
 
   escD.attach(3); // Attached to pin 3
   delay(15);
@@ -44,7 +44,7 @@ void MOTOR_init(){
 
 }
 
-void MOTOR_forward(float speedMotor){
+void MOTOR_backward(float speedMotor){
   DRIVERPWM_setPwm(PIN_PWM_M11, speedMotor);
   DRIVERPWM_setPwm(PIN_PWM_M12, 0);
   DRIVERPWM_setPwm(PIN_PWM_M21, speedMotor);
@@ -52,7 +52,7 @@ void MOTOR_forward(float speedMotor){
 
 }
 
-void MOTOR_backward(float speedMotor){
+void MOTOR_forward(float speedMotor){
   DRIVERPWM_setPwm(PIN_PWM_M11, 0);
   DRIVERPWM_setPwm(PIN_PWM_M12, speedMotor);
   DRIVERPWM_setPwm(PIN_PWM_M21, 0);
@@ -61,7 +61,7 @@ void MOTOR_backward(float speedMotor){
 
 void MOTOR_forward_boost(float speedMotor){
 
-  int speed = map( speed,0,100,ESC_MIN_FORWARD, ESC_MAX_FORWARD);
+  int speed = map( speedMotor,0,100,ESC_MIN_FORWARD, ESC_MAX_FORWARD);
 
   SERIAL_println("Value %d", speed);
 
@@ -71,12 +71,17 @@ void MOTOR_forward_boost(float speedMotor){
 
 void MOTOR_backward_boost(float speedMotor){
 
-  int speed = map( speed,100,0,ESC_MIN_BACKWARD, ESC_MAX_BACKWARD);
+  int speed = map( speedMotor,100,0,ESC_MIN_BACKWARD, ESC_MAX_BACKWARD);
 
   SERIAL_println("Value %d", speed);
 
   escG.write(25);
   escD.write(25);
+}
+
+void MOTOR_stop_boost(){
+  escG.write(91);
+  escD.write(91);
 }
 
 

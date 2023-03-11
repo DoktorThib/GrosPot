@@ -43,5 +43,7 @@
 
 #define LIM_WHITE 500
 
+#define SENS_FORWARD true
+#define SENS_BACKWARD false
 
 #endif
